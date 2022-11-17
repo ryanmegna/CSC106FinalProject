@@ -1,0 +1,64 @@
+var drawBody = function(x,y,h){
+var p = h/100;
+noStroke();
+fill(240, 229, 211);
+ellipse(x,y,86*p,100*p); //head
+rect(x-25*p,y-27*p,48*p,100*p); //neck
+};
+var drawHair = function(x,y,h){
+var p = h/100;
+fill(87, 51, 29); //hair
+quad(x-50*p,y+17*p,x-44*p,y+21*p,x-10*p,y-35*p,x-38*p,y-35*p);
+quad(x+45*p,y+23*p,x+50*p,y+16*p,x+37*p,y-35*p,x+14*p,y-35*p);
+triangle(x-37*p,y-33*p,x+37*p,y-33*p,x,y-62*p);
+fill(255, 255, 255);
+rect(x-47*p,y-90*p,95*p,46*p);
+};
+var drawFace = function(x,y,h){
+var p = h/100;
+fill(69, 53, 17);
+ellipse(x-16*p,y,8*p,8*p); //L eye
+ellipse(x+15*p,y,8*p,8*p); //R eye
+stroke(0, 0, 0);
+noFill();
+bezier(x,y-5*p,x,y,x+12*p,y+23*p,x-7,y+14*p);
+fill(255, 255, 255);
+stroke(201, 161, 189);
+arc(x+-1*p,y+26*p,33*p,11*p,10*p,175);
+};
+var drawShirt = function(x,y,h){
+var p = h/100;
+noStroke();
+fill(193, 196, 199);
+quad(x+30*p,y+101*p,x+72*p,y+101*p,x+40*p,y+56*p,x+15*p,y+69*p);
+quad(x-65*p,y+102*p,x-32*p,y+101*p,x-20*p,y+66*p,x-39*p,y+56*p);
+rect(x-44*p,y+67*p,88*p,34*p);
+stroke(0);
+line(x-26*p,y+80*p,x-26*p,y+97*p);
+line(x-15*p,y+80*p,x-15*p,y+97*p);
+line(x-26*p,y+90*p,x-15*p,y+90*p);
+line(x,y+82*p,x,y+97*p);
+line(x+15*p,y+82*p,x+15*p,y+97*p);
+line(x+15*p,y+82*p,x+7*p,y+97*p);
+line(x,y+82*p,x+7*p,y+97*p);
+};
+var drawGlasses = function(x,y,h){
+var p = h/100;
+noFill();
+stroke(209, 65, 65);
+ellipse(x-16*p,y,21*p,18*p);
+ellipse(x+15*p,y,21*p,18*p);
+line(x-5*p,y,x+4*p,y);
+line(x-46*p,y+5,x-27*p,y);
+line(x+24*p,y,x+47*p,y+2);
+};
+
+var drawBitmoji = function(x,y,h){
+drawBody(x,y,h);
+drawHair(x,y,h);
+drawFace(x,y,h);
+drawShirt(x,y,h);
+drawGlasses(x,y,h);
+};
+
+drawBitmoji(100,100,50);
