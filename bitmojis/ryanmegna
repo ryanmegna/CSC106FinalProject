@@ -1,0 +1,81 @@
+noStroke();
+
+var drawShirt = function(x,y,h) {
+
+    var p = h/100;
+
+//shirt
+fill(82, 82, 82);
+quad(x + 25*p,y + 190*p,x + 57*p,y + 135*p,x + 137*p,y + 135*p,x + 175*p,y + 190*p);
+fill(214, 180, 117);
+arc(x + 97*p,y + 135*p,48*p,42*p,0,180);
+fill(255, 255, 255);
+textSize(30*p);
+text("RM",x + 74*p,y + 161*p,50*p,50*p);
+
+};
+
+var drawHair = function(x,y,h) {
+
+    var p = h/100;
+
+//hair
+fill(235, 186, 123);
+quad(x + 142*p,y + 60*p,x + 53*p,y + 60*p,x + 34*p,y + 110*p,x + 162*p,y + 110*p);
+
+};
+
+var drawHead = function(x,y,h) {
+    
+    var p = h/100;
+    
+//head
+fill(158, 127, 84);
+quad(x + 73*p,y + 140*p,x + 121*p,y + 140*p,x + 140*p,y + 110*p,x + 54*p,y + 110*p); //beard
+fill(255, 216, 143);
+quad(x + 76*p,y + 136*p,x + 118*p,y + 136*p,x + 137*p,y + 110*p,x + 57*p,y + 110*p);
+fill(255, 216, 143);
+rect(x + 54*p,y + 110*p,85*p,-50*p);
+
+};
+
+var drawHat = function(x,y,h) {
+    
+    var p = h/100;
+    
+//hat
+fill(145, 70, 0);
+quad(x + 107*p,y + 25*p,x + 85*p,y + 25*p,x + 64*p,y + 55*p,x + 129*p,y + 55*p);
+fill(122, 59, 0);
+ellipse(x + 97*p,y + 57*p,109*p,13*p);
+ellipse(x + 150*p,y + 50*p,5*p,17*p);
+ellipse(x + 44*p,y + 50*p,5*p,17*p);
+
+};
+
+var drawFace = function(x,y,h) {
+    
+    var p = h/100;
+    
+//face
+fill(43, 43, 43);
+rect(x + 65*p,y + 70*p,21*p,6*p);
+rect(x + 107*p,y + 70*p,21*p,6*p);
+fill(0, 0, 0);
+ellipse(x + 76*p,y + 91*p,19*p,15*p);
+ellipse(x + 118*p,y + 91*p,19*p,15*p);
+arc(x + 98*p,y + 113*p,33*p,32*p,0,180);
+fill(255, 255, 255);
+arc(x + 98*p,y + 114*p,29*p,28*p,0,180);
+
+};
+
+var drawBitmoji = function(x,y,h) {
+ 
+    drawShirt(x,y,h);
+    drawHair(x,y,h);
+    drawHead(x,y,h);
+    drawHat(x,y,h);
+    drawFace(x,y,h);
+    
+};
