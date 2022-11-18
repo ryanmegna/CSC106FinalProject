@@ -1,0 +1,67 @@
+var numPipes = 1000;
+var xPositions = [];
+var yPositions = [];
+
+var Beaver = function(x, y) {
+    this.x = x;
+    this.y = y;
+    this.img = getImage("creatures/Hopper-Happy");
+    this.sticks = 0;
+};
+
+Beaver.prototype.draw = function() {
+    this.y = constrain(this.y, 0, height-50);
+    image(this.img, this.x, this.y, 40, 40);
+};
+
+Beaver.prototype.hop = function() {
+    this.img = getImage("creatures/Hopper-Jumping");
+    this.y -= 4;
+};
+
+Beaver.prototype.fall = function() {
+    this.img = getImage("creatures/Hopper-Happy");
+    this.y += 4;
+};
+
+var beaver = new Beaver(100, 150);
+
+var drawPipes = function(x,y,height) {
+for (var i = 0; i < 2; i++) {
+    if (i === 0){
+    fill(0, 168, 17);
+    rect(x, y, 50, height*2);
+    rect(x-10, y-210, 70, height+65);
+    }
+    if (i === 1){
+    fill(0, 168, 17);
+    rect(x, y-400, 50, height-92);
+    rect(x-10, y-400, 70, height+65);  
+    }
+    }
+};
+
+    for (var k = 1; k < numPipes + 1; k++) {
+
+        xPositions.push(125*k);
+        random(460,600);
+        yPositions.push(random(460,600));
+    }
+    
+    var startScreen = function() {
+        var tempBeaver = new Beaver(100,150);
+    };
+    
+var draw = function() {
+    background(184, 236, 255);
+    for(var x = 1; x < numPipes + 1; x++) {
+        drawPipes(xPositions[x],yPositions[x],-110);
+        xPositions[x] -= 1;
+    }
+    if (keyIsPressed && key.code === 32) {
+        beaver.hop();
+    } else {
+        beaver.fall();
+    }
+    beaver.draw();
+};
