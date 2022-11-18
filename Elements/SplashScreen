@@ -159,19 +159,13 @@ var startButton = new Button({
 mouseClicked = function() {
 
 if (currentScene === 0) {startButton.handleMouseClick();}
-    else {
-            for (var i in tiles) {
-                tiles[i].handleMouseClick(mouseX, mouseY);
-               }
-           }
-}
     
     var splash = function ()
 {
     background(41, 187, 255);
     fill(0, 255, 255);
     textSize(45);
-    text("Memory Game",60,150);
+    text("Flappy Bird",60,150);
     textSize(18);
     text("By: Ryan Megna and Haley MacAuley",57,200);
     noStroke();
