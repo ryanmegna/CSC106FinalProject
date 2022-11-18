@@ -1,1 +1,44 @@
 var currentScene = 0; //0 = splash screen, 1 = game screen
+
+var startButton = new Button({
+    x: 132,
+    y: 262,
+    label: "Start",
+    onClick: function() {
+        currentScene = 1;
+    }
+});
+
+mouseClicked = function() {
+
+if (currentScene === 0) {startButton.handleMouseClick();}
+    else {
+            for (var i in tiles) {
+                tiles[i].handleMouseClick(mouseX, mouseY);
+               }
+           }
+}
+    
+    var splash = function ()
+{
+    background(41, 187, 255);
+    fill(0, 255, 255);
+    textSize(45);
+    text("Memory Game",60,150);
+    textSize(18);
+    text("By: Ryan Megna and Haley MacAuley",57,200);
+    noStroke();
+    drawBitmoji(20,250,50);
+    stroke(0, 0, 0);
+    drawBitmoji2(344,293,50);
+    stroke(0, 0, 0);
+    startButton.draw();
+};
+
+draw = function() {
+    if (currentScene === 0)
+    {splash();}
+    else
+    {
+    
+    }
