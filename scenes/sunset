@@ -1,0 +1,27 @@
+var scene = 2;
+
+if(scene === 2){
+var pipeColor = color(39,39,105);
+noStroke();
+background(223,80,140);
+fill(239,186,230); //clouds
+ellipse(80,270,76,40);
+ellipse(118,285,58,34);
+
+ellipse(238,174,56,27);
+ellipse(259,181,56,21);
+ellipse(286,164,56,24);
+
+ellipse(111,86,76,40);
+ellipse(76,101,72,28);
+ellipse(161,96,74,34);
+
+ellipse(297,265,72,38);
+ellipse(328,247,50,26);
+
+fill(239,178,63); //sun
+ellipse(200,323,100,100);
+
+for(var i = 0; i < 10; ++i){
+image(getImage("cute/GrassBlock"), 50*i, 300);
+}}
