@@ -187,6 +187,9 @@ var xPositions = [];
 var yPositions = [];
 var score = 0;
 var tempScore = 0;
+var pipeColor = color(0, 0, 0);
+var pipeSpeed = 1;
+var tempSpeed = 1;
 
 //Sets Bitmoji's x and y
 var Bitmoji = function(x, y) {
@@ -240,12 +243,12 @@ var drawPipes = function(x,y,height) {
 for (var i = 0; i < 2; i++) {
     if (i === 0){
         stroke(0, 0, 0);
-        fill(0, 168, 17);
+        fill(pipeColor);
         rect(x, y, 50, height*2);
         rect(x-10, y-210, 70, height+65);
     }
     if (i === 1){
-        fill(0, 168, 17);
+        fill(pipeColor);
         rect(x, y-400, 50, height-92);
         rect(x-10, y-400, 70, height+65);  
     }
@@ -288,6 +291,103 @@ var selectHaley = new Button({
     }
 });
 
+//codes for the backgrounds
+var beach = function(){
+    background(100, 135, 242);
+    pipeColor = color(237, 112, 45);
+    noStroke();
+    fill(12, 35, 209);
+    rect(1,350,467,200);
+    fill(250, 240, 185);
+    arc(1,451,897,227,-119,109);
+    fill(240, 195, 127);
+    rect(31,314,82,48);
+    rect(31,282,20,48);
+    rect(93,282,20,48);
+    triangle(59,290,22,290,40,270);
+    triangle(123,290,85,290,103,270);
+    fill(64, 48, 27);
+    ellipse(73,352,13,17);
+    rect(67,352,13,10);
+};
+var default1 = function(){
+    pipeColor = color(36,125,24);
+noStroke();
+background(132,184,240);
+fill(255, 255, 255); //clouds
+ellipse(275,115,76,40);
+ellipse(291,103,40,40);
+ellipse(306,122,58,34);
+
+ellipse(123,207,76,40);
+ellipse(101,219,72,38);
+ellipse(155,226,74,34);
+
+ellipse(296,210,72,38);
+ellipse(328,201,50,26);
+
+fill(245, 223, 22); //sun
+ellipse(75,75,50,50);
+
+for(var i = 0; i < 10; ++i){
+image(getImage("cute/GrassBlock"), 50*i, 300);
+}};
+var sunset = function(){
+    pipeColor = color(39,39,105);
+noStroke();
+background(223,80,140);
+fill(239,186,230); //clouds
+ellipse(80,270,76,40);
+ellipse(118,285,58,34);
+
+ellipse(238,174,56,27);
+ellipse(259,181,56,21);
+ellipse(286,164,56,24);
+
+ellipse(111,86,76,40);
+ellipse(76,101,72,28);
+ellipse(161,96,74,34);
+
+ellipse(297,265,72,38);
+ellipse(328,247,50,26);
+
+fill(239,178,63); //sun
+ellipse(200,323,100,100);
+
+for(var i = 0; i < 10; ++i){
+image(getImage("cute/GrassBlock"), 50*i, 300);
+}};
+var selectedScene = 0;
+
+//buttons to select the backgrounds
+var selectDefault = new Button({
+    x:120,
+    y:200,
+    label: "Default",
+    onClick: function(){
+        selectedScene = 1;
+        currentScene = 2;
+    }
+});
+var selectSunset = new Button({
+    x:120,
+    y:265,
+    label: "Sunset",
+    onClick: function(){
+        selectedScene = 2;
+        currentScene = 2;
+    }
+});
+var selectBeach = new Button({
+    x:120,
+    y:330,
+    label: "Beach",
+    onClick: function(){
+        selectedScene = 3;
+        currentScene = 2;
+    }
+});
+
 //draws splash screen
 var splash = function() {
     background(46, 164, 255);
@@ -306,9 +406,19 @@ var splash = function() {
     selectHaley.draw();
 };
 
+//draws scene select page
+var sceneSelect = function(){
+    background(220, 232, 229);
+    fill(0, 0, 0);
+    textSize(20);
+    text("Choose your scene:", 106,116,200,200);
+    selectDefault.draw();
+    selectSunset.draw();
+    selectBeach.draw();
+};
+
 //draws start screen
 var startScreen = function() {
-        background(184, 236, 255);
         textSize(20);
         fill(0, 0, 0);
         text("Press SPACE to start!", 16, 275);
@@ -317,17 +427,16 @@ var startScreen = function() {
         for(var x = 1; x < numPipes + 1; x++) {
         drawPipes(xPositions[x],yPositions[x],-110);
             if (keyIsPressed && key.code === 32) {
-                currentScene = 2;}
+                currentScene = 3;}
         }
 };
 
 //main screen; actual game is played on this scene
 var playScreen = function() {
     if(gameInProgress === true) {
-    background(184, 236, 255);
     for(var x = 1; x < numPipes + 1; x++) {
         drawPipes(xPositions[x],yPositions[x],-110);
-        xPositions[x] -= 1;
+        xPositions[x] -= pipeSpeed;
     }
     if (keyIsPressed && key.code === 32) {
         bitmoji.hop();
@@ -345,7 +454,10 @@ var playScreen = function() {
 mouseClicked = function() {
     if (currentScene === 0) {selectRyan.handleMouseClick();}
     if (currentScene === 0) {selectHaley.handleMouseClick();}
-    if (currentScene === 2 & gameInProgress === false) {tryAgain.handleMouseClick();}
+    if (currentScene === 1) {selectDefault.handleMouseClick();}
+    if (currentScene === 1) {selectSunset.handleMouseClick();}
+    if (currentScene === 1) {selectBeach.handleMouseClick();}
+    if (currentScene === 3 & gameInProgress === false) {tryAgain.handleMouseClick();}
 };
 
 //draw loop
@@ -353,15 +465,32 @@ var draw = function() {
     
     if (currentScene === 0){
         splash();}
-    
+        
     if (currentScene === 1){
-        startScreen();}
+        sceneSelect();}
     
     if (currentScene === 2){
+        if(selectedScene === 1){
+            default1();}
+        if(selectedScene === 2){
+            sunset();}
+        if(selectedScene === 3){
+            beach();}
+        startScreen();}
+    
+    if (currentScene === 3){
+        if(selectedScene === 1){
+            default1();}
+        if(selectedScene === 2){
+            sunset();}
+        if(selectedScene === 3){
+            beach();}
         playScreen();
         if (gameInProgress === true) {
             tempScore = tempScore + 0.008;
-            score = round(tempScore);}
+            score = round(tempScore);
+            pipeSpeed = pipeSpeed + 0.0005;
+        }
         if (gameInProgress === false) {
             gameOver();}
     }
