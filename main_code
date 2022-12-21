@@ -1,67 +1,369 @@
+/*
+This is our final project for CSC106, we decided to make a twist on the
+original game "Flappy Bird".
+*/
+
+//Ryan's Bitmoji
+var drawShirt = function(x,y,h) {
+
+    var p = h/100;
+
+//shirt
+fill(82, 82, 82);
+quad(x + 25*p,y + 190*p,x + 57*p,y + 135*p,x + 137*p,y + 135*p,x + 175*p,y + 190*p);
+fill(214, 180, 117);
+arc(x + 97*p,y + 135*p,48*p,42*p,0,180);
+fill(255, 255, 255);
+textSize(30*p);
+text("RM",x + 74*p,y + 161*p,50*p,50*p);
+
+};
+var drawHair = function(x,y,h) {
+
+    var p = h/100;
+
+//hair
+fill(235, 186, 123);
+quad(x + 142*p,y + 60*p,x + 53*p,y + 60*p,x + 34*p,y + 110*p,x + 162*p,y + 110*p);
+
+};
+var drawHead = function(x,y,h) {
+    
+    var p = h/100;
+    
+//head
+fill(158, 127, 84);
+quad(x + 73*p,y + 140*p,x + 121*p,y + 140*p,x + 140*p,y + 110*p,x + 54*p,y + 110*p); //beard
+fill(255, 216, 143);
+quad(x + 76*p,y + 136*p,x + 118*p,y + 136*p,x + 137*p,y + 110*p,x + 57*p,y + 110*p);
+fill(255, 216, 143);
+rect(x + 54*p,y + 110*p,85*p,-50*p);
+
+};
+var drawHat = function(x,y,h) {
+    
+    var p = h/100;
+    
+//hat
+fill(145, 70, 0);
+quad(x + 107*p,y + 25*p,x + 85*p,y + 25*p,x + 64*p,y + 55*p,x + 129*p,y + 55*p);
+fill(122, 59, 0);
+ellipse(x + 97*p,y + 57*p,109*p,13*p);
+ellipse(x + 150*p,y + 50*p,5*p,17*p);
+ellipse(x + 44*p,y + 50*p,5*p,17*p);
+
+};
+var drawFace = function(x,y,h) {
+    
+    var p = h/100;
+    
+//face
+fill(43, 43, 43);
+rect(x + 65*p,y + 70*p,21*p,6*p);
+rect(x + 107*p,y + 70*p,21*p,6*p);
+fill(0, 0, 0);
+ellipse(x + 76*p,y + 91*p,19*p,15*p);
+ellipse(x + 118*p,y + 91*p,19*p,15*p);
+arc(x + 98*p,y + 113*p,33*p,32*p,0,180);
+fill(255, 255, 255);
+arc(x + 98*p,y + 114*p,29*p,28*p,0,180);
+
+};
+var drawBitmoji = function(x,y,h) {
+ 
+    drawShirt(x,y,h);
+    drawHair(x,y,h);
+    drawHead(x,y,h);
+    drawHat(x,y,h);
+    drawFace(x,y,h);
+    
+};
+
+//Haley's Bitmoji
+var drawBody2 = function(x,y,h){
+var p = h/100;
+noStroke();
+fill(240, 229, 211);
+ellipse(x,y,86*p,100*p); //head
+rect(x-25*p,y-27*p,48*p,100*p); //neck
+};
+var drawHair2 = function(x,y,h){
+var p = h/100;
+fill(87, 51, 29); //hair
+quad(x-50*p,y+17*p,x-44*p,y+21*p,x-10*p,y-35*p,x-38*p,y-35*p);
+quad(x+45*p,y+23*p,x+50*p,y+16*p,x+37*p,y-35*p,x+14*p,y-35*p);
+triangle(x-37*p,y-33*p,x+37*p,y-33*p,x,y-62*p);
+};
+var drawFace2 = function(x,y,h){
+var p = h/100;
+fill(69, 53, 17);
+ellipse(x-16*p,y,8*p,8*p); //L eye
+ellipse(x+15*p,y,8*p,8*p); //R eye
+stroke(0, 0, 0);
+noFill();
+strokeWeight(0);
+bezier(x,y-5*p,x,y,x+12*p,y+23*p,x-7*p,y+14*p);
+strokeWeight(1);
+fill(255, 255, 255);
+stroke(201, 161, 189);
+arc(x+-1*p,y+26*p,33*p,11*p,10*p,175);
+};
+var drawShirt2 = function(x,y,h){
+var p = h/100;
+noStroke();
+fill(193, 196, 199);
+quad(x+30*p,y+101*p,x+72*p,y+101*p,x+40*p,y+56*p,x+15*p,y+69*p);
+quad(x-65*p,y+102*p,x-32*p,y+101*p,x-20*p,y+66*p,x-39*p,y+56*p);
+rect(x-44*p,y+67*p,88*p,34*p);
+stroke(0);
+line(x-26*p,y+80*p,x-26*p,y+97*p);
+line(x-15*p,y+80*p,x-15*p,y+97*p);
+line(x-26*p,y+90*p,x-15*p,y+90*p);
+line(x,y+82*p,x,y+97*p);
+line(x+15*p,y+82*p,x+15*p,y+97*p);
+line(x+15*p,y+82*p,x+7*p,y+97*p);
+line(x,y+82*p,x+7*p,y+97*p);
+};
+var drawGlasses2 = function(x,y,h){
+var p = h/100;
+noFill();
+stroke(209, 65, 65);
+ellipse(x-16*p,y,21*p,18*p);
+ellipse(x+15*p,y,21*p,18*p);
+line(x-5*p,y,x+4*p,y);
+line(x-46*p,y+5,x-27*p,y);
+line(x+24*p,y,x+47*p,y+2);
+};
+var drawBitmoji2 = function(x,y,h){
+drawBody2(x,y,h);
+drawHair2(x,y,h);
+drawFace2(x,y,h);
+drawShirt2(x,y,h);
+drawGlasses2(x,y,h);
+};
+
+//Button class taken from Khan Academy
+var Button = function(config) {
+    this.x = config.x || 0;
+    this.y = config.y || 0;
+    this.width = config.width || 124;
+    this.height = config.height || 50;
+    this.label = config.label || "Click";
+    this.onClick = config.onClick || function() {};
+};
+
+//Creates a visual for the Button class; if need to change how button looks
+Button.prototype.draw = function() {
+    stroke(0, 0, 0);
+    fill(230, 230, 230);
+    rect(this.x, this.y, this.width, this.height, 5);
+    fill(0, 0, 0);
+    textSize(19);
+    textAlign(LEFT, TOP);
+    text(this.label, this.x+10, this.y+this.height/4);
+};
+
+//Gets boundaries for Button class
+Button.prototype.isMouseInside = function() { // boolean true if mouse over button, else false
+    return mouseX > this.x &&
+           mouseX < (this.x + this.width) &&
+           mouseY > this.y &&
+           mouseY < (this.y + this.height);
+};
+
+//Handles click on Button class
+Button.prototype.handleMouseClick = function() {
+    if (this.isMouseInside()) {
+        this.onClick();
+    }
+};
+
+//global variables
+var gameInProgress = false;
+var currentScene = 0;
+var charNum = 1;
 var numPipes = 1000;
 var xPositions = [];
 var yPositions = [];
+var score = 0;
+var tempScore = 0;
 
-var Beaver = function(x, y) {
+//Sets Bitmoji's x and y
+var Bitmoji = function(x, y) {
     this.x = x;
     this.y = y;
-    this.img = getImage("creatures/Hopper-Happy");
-    this.sticks = 0;
 };
 
-Beaver.prototype.draw = function() {
+//Draws Bitmoji visual; decides which character is used
+Bitmoji.prototype.draw = function() {
     this.y = constrain(this.y, 0, height-50);
-    image(this.img, this.x, this.y, 40, 40);
+    if (charNum === 1){
+    noStroke();
+    drawBitmoji(this.x, this.y, 30);}
+    if (charNum === 2){
+    drawBitmoji2(this.x, this.y, 30);}
 };
 
-Beaver.prototype.hop = function() {
-    this.img = getImage("creatures/Hopper-Jumping");
-    this.y -= 4;
+//Up motion
+Bitmoji.prototype.hop = function() {
+    this.y -= 4; //amount bitmoji moves up
 };
 
-Beaver.prototype.fall = function() {
-    this.img = getImage("creatures/Hopper-Happy");
-    this.y += 4;
+Bitmoji.prototype.fall = function() {
+    this.y += 2; //amount bitmoji moves down
 };
 
-var beaver = new Beaver(100, 150);
+var bitmoji = new Bitmoji(65, 150); //creates character
 
+//restart button
+var tryAgain = new Button({
+    x: 140,
+    y: 225,
+    label: "Try Again",
+    onClick: function() {
+        Program.restart();
+    }
+});
+
+//gameover box displayed after touching pipe
+var gameOver = function() {
+    fill(194, 188, 128);
+    rect(65,100,265,210);
+    fill(0, 0, 0);
+    textSize(45);
+    text("Game Over",79,130);
+    tryAgain.draw();
+};
+
+//draws top and bottom pipes; sets boundaries of pipes for collision
 var drawPipes = function(x,y,height) {
 for (var i = 0; i < 2; i++) {
     if (i === 0){
-    fill(0, 168, 17);
-    rect(x, y, 50, height*2);
-    rect(x-10, y-210, 70, height+65);
+        stroke(0, 0, 0);
+        fill(0, 168, 17);
+        rect(x, y, 50, height*2);
+        rect(x-10, y-210, 70, height+65);
     }
     if (i === 1){
-    fill(0, 168, 17);
-    rect(x, y-400, 50, height-92);
-    rect(x-10, y-400, 70, height+65);  
+        fill(0, 168, 17);
+        rect(x, y-400, 50, height-92);
+        rect(x-10, y-400, 70, height+65);  
     }
+    if (bitmoji.x > x-35 && bitmoji.x < x+35){
+        if(bitmoji.y > y-280 || bitmoji.y < y-415) {
+            gameInProgress = false;}
+        }
     }
 };
 
-    for (var k = 1; k < numPipes + 1; k++) {
-
-        xPositions.push(125*k);
-        random(460,600);
-        yPositions.push(random(460,600));
+//generates x and y positions for pipes
+for (var k = 1; k < numPipes + 1; k++) {
+    xPositions.push(125*k);
+    random(460,600);
+    yPositions.push(random(460,600));
+}
+    
+//select Ryan's character
+var selectRyan = new Button({
+    x: 38,
+    y: 336,
+    label: "Select Ryan",
+    onClick: function() {
+        charNum = 1;
+        currentScene = 1;
+        gameInProgress = true;
     }
     
-    var startScreen = function() {
-        var tempBeaver = new Beaver(100,150);
-    };
-    
-var draw = function() {
+});
+
+//select Haley's character
+var selectHaley = new Button({
+    x: 240,
+    y: 336,
+    label: "Select Haley",
+    onClick: function() {
+        charNum = 2;
+        currentScene = 1;
+        gameInProgress = true;
+    }
+});
+
+//draws splash screen
+var splash = function() {
+    background(46, 164, 255);
+    textSize(45);
+    fill(0, 0, 0);
+    text("Flappy Person", 54, 43);
+    textSize(20);
+    text("By: Ryan Megna and Haley MacAuley", 31, 115);
+    textSize(30);
+    text("Character Selection", 65, 202);
+    noStroke();
+    drawBitmoji(50,228,50);
+    drawBitmoji2(303,274,50);
+    stroke(0, 0, 0);
+    selectRyan.draw();
+    selectHaley.draw();
+};
+
+//draws start screen
+var startScreen = function() {
+        background(184, 236, 255);
+        textSize(20);
+        fill(0, 0, 0);
+        text("Press SPACE to start!", 16, 275);
+        var tempBitmoji = new Bitmoji(65,150);
+        tempBitmoji.draw();
+        for(var x = 1; x < numPipes + 1; x++) {
+        drawPipes(xPositions[x],yPositions[x],-110);
+            if (keyIsPressed && key.code === 32) {
+                currentScene = 2;}
+        }
+};
+
+//main screen; actual game is played on this scene
+var playScreen = function() {
+    if(gameInProgress === true) {
     background(184, 236, 255);
     for(var x = 1; x < numPipes + 1; x++) {
         drawPipes(xPositions[x],yPositions[x],-110);
         xPositions[x] -= 1;
     }
     if (keyIsPressed && key.code === 32) {
-        beaver.hop();
+        bitmoji.hop();
     } else {
-        beaver.fall();
+        bitmoji.fall();
     }
-    beaver.draw();
+    bitmoji.draw();
+    }
+    fill(0, 0, 0);
+    textSize(35);
+    text("Score: " + score,130,7);
+};
+    
+//handles mouse clicks for Button class
+mouseClicked = function() {
+    if (currentScene === 0) {selectRyan.handleMouseClick();}
+    if (currentScene === 0) {selectHaley.handleMouseClick();}
+    if (currentScene === 2 & gameInProgress === false) {tryAgain.handleMouseClick();}
+};
+
+//draw loop
+var draw = function() {
+    
+    if (currentScene === 0){
+        splash();}
+    
+    if (currentScene === 1){
+        startScreen();}
+    
+    if (currentScene === 2){
+        playScreen();
+        if (gameInProgress === true) {
+            tempScore = tempScore + 0.008;
+            score = round(tempScore);}
+        if (gameInProgress === false) {
+            gameOver();}
+    }
+    
 };
